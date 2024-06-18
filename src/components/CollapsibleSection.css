@@ -3,7 +3,7 @@
 }
 
 .collapsible-header {
-    background-color: #0073e6;
+    background-color: grey;
     color: white;
     padding: 10px 20px;
     font-size: 1.2em;
@@ -16,7 +16,7 @@
 }
 
 .collapsible-header:hover {
-    background-color: #005bb5;
+    background-color: grey;
 }
 
 .collapsible-content {

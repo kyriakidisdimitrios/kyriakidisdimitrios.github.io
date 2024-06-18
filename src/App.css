@@ -41,7 +41,7 @@ header p {
 }
 
 header a {
-  color: #0073e6;
+  color: grey;
   text-decoration: none;
 }
 
@@ -60,7 +60,7 @@ section:last-of-type {
 }
 
 h2 {
-  color: #0073e6;
+  color: grey;
   border-bottom: 2px solid #e0e0e0;
   padding-bottom: 5px;
   margin-bottom: 15px;
@@ -84,7 +84,7 @@ li {
 }
 
 a {
-  color: #0073e6;
+  color: grey;
   text-decoration: none;
 }
 
