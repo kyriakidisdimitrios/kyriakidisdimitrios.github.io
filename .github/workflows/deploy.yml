@@ -16,18 +16,39 @@ jobs:
       - name: Install Dependencies
         run: npm install  # Adjust as per your project (e.g., npm, yarn, etc.)
 
-      - name: Build and Deploy
+      - name: Build
+        run: npm run build  # Replace with your build command
+        working-directory: ./  # Adjust if necessary
+
+      - name: Deploy to GitHub Pages
         run: |
-          npm run build  # Replace with your build command
           git config --local user.email "kyriakidis.demetrios@gmail.com"
           git config --local user.name "kyriakidisdimitrios"
 
-          # Deploy to gh-pages branch
-          git checkout gh-pages || git checkout --orphan gh-pages  # Create gh-pages branch if it doesn't exist
+          # Ensure gh-pages branch exists or create a new orphan branch
+          if ! git show-ref --verify --quiet refs/heads/gh-pages; then
+            git checkout --orphan gh-pages
+          else
+            git checkout gh-pages
+          fi
+
+          # Remove all existing files
           git rm -rf .
-          git checkout master -- build  # Copy only the build directory from master branch
-          mv build/* .
+
+          # Copy build files from master branch
+          git checkout master -- build
+
+          # Move contents of build directory to root
+          mv -f build/* .
+
+          # Clean up build directory
           rm -rf build
+
+          # Add, commit, and force-push changes to gh-pages branch
           git add .
-          git commit -m "Deploying to GitHub Pages"
+          git commit -m "Deploy to GitHub Pages"
           git push origin gh-pages --force
+
+        env:
+          CI: true  # Ensures CRA (Create React App) picks up CI environment
+
