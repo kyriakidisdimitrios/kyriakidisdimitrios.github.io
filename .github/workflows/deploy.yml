@@ -32,8 +32,8 @@ jobs:
             git checkout gh-pages
           fi
 
-          # Remove all existing files
-          git rm -rf .
+          # Remove all existing files (except .gitignore if needed)
+          git ls-files --cached --ignored --exclude-standard | xargs git rm -rf --
 
           # Copy build files from master branch
           git checkout master -- build
@@ -51,4 +51,3 @@ jobs:
 
         env:
           CI: true  # Ensures CRA (Create React App) picks up CI environment
-
