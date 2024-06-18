@@ -20,15 +20,14 @@
 }
 
 .collapsible-content {
-    max-height: 200px; /* Adjust as needed */
+    max-height: 0;
     overflow-y: auto;
+    transition: max-height 0.3s ease;
     padding: 0 20px;
     margin-top: 10px; /* Adjust spacing between header and content */
 }
 
-@media (max-width: 600px) {
-    .collapsible-header {
-        font-size: 1em;
-        padding: 10px 15px;
-    }
+.collapsible-content.open {
+    max-height: 300px; /* Adjust as needed */
+    padding: 20px;
 }
