@@ -31,22 +31,37 @@ jobs:
             git checkout gh-pages
           fi
 
-          # Remove all existing files in gh-pages branch except .git folder
-          git ls-files | xargs git rm --cached
-          git rm -rf .
+          # Remove specific files from gh-pages branch
+          git rm -rf .github/workflows/deploy.yml
+          git rm -rf .gitignore
+          git rm -rf .idea
+          git rm -rf README.md
+          git rm -rf package-lock.json
+          git rm -rf package.json
+          git rm -rf public/favicon.ico
+          git rm -rf public/index.html
+          git rm -rf public/logo192.png
+          git rm -rf public/logo512.png
+          git rm -rf public/manifest.json
+          git rm -rf public/robots.txt
+          git rm -rf src/App.css
+          git rm -rf src/App.js
+          git rm -rf src/App.test.js
+          git rm -rf src/components/AdditionalInfo
+          git rm -rf src/components/CollapsibleSection
+          git rm -rf src/components/Education.js
+          git rm -rf src/components/Header.js
+          git rm -rf src/components/Skills.js
+          git rm -rf src/components/Summary.js
+          git rm -rf src/components/WorkExperience.js
+          git rm -rf src/index.css
+          git rm -rf src/index.js
+          git rm -rf src/logo.svg
+          git rm -rf src/reportWebVitals.js
+          git rm -rf src/setupTests.js
 
-          # Copy build files from master branch
-          git checkout master -- build
-
-          # Move contents of build directory to root
-          mv -f build/* .
-
-          # Clean up build directory
-          rm -rf build
-
-          # Add, commit, and force-push changes to gh-pages branch
-          git add .
-          git commit -m "Deploy to GitHub Pages"
+          # Commit and push changes to gh-pages branch
+          git commit -m "Remove unnecessary files from gh-pages branch"
           git push origin gh-pages --force
 
         env:
