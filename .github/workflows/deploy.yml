@@ -13,13 +13,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - name: Install Dependencies
         run: npm install
 
       - name: Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Copy Build to gh-pages Branch
         run: |
           git config --local user.email "kyriakidis.demetrios@gmail.com"
           git config --local user.name "kyriakidisdimitrios"
@@ -31,37 +36,19 @@ jobs:
             git checkout gh-pages
           fi
 
-          # Remove specific files from gh-pages branch
-          git rm -rf .github/workflows/deploy.yml
-          git rm -rf .gitignore
-          git rm -rf .idea
-          git rm -rf README.md
-          git rm -rf package-lock.json
-          git rm -rf package.json
-          git rm -rf public/favicon.ico
-          git rm -rf public/index.html
-          git rm -rf public/logo192.png
-          git rm -rf public/logo512.png
-          git rm -rf public/manifest.json
-          git rm -rf public/robots.txt
-          git rm -rf src/App.css
-          git rm -rf src/App.js
-          git rm -rf src/App.test.js
-          git rm -rf src/components/AdditionalInfo
-          git rm -rf src/components/CollapsibleSection
-          git rm -rf src/components/Education.js
-          git rm -rf src/components/Header.js
-          git rm -rf src/components/Skills.js
-          git rm -rf src/components/Summary.js
-          git rm -rf src/components/WorkExperience.js
-          git rm -rf src/index.css
-          git rm -rf src/index.js
-          git rm -rf src/logo.svg
-          git rm -rf src/reportWebVitals.js
-          git rm -rf src/setupTests.js
+          # Remove all existing files from gh-pages branch except .gitignore (if needed)
+          git rm -rf .
 
-          # Commit and push changes to gh-pages branch
-          git commit -m "Remove unnecessary files from gh-pages branch"
+          # Copy build output from main branch
+          git checkout main -- build
+          mv build/* .
+          rm -rf build
+
+          # Commit changes
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+
+          # Force push to gh-pages branch
           git push origin gh-pages --force
 
         env:
