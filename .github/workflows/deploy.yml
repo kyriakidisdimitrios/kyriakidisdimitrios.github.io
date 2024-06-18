@@ -31,7 +31,8 @@ jobs:
             git checkout gh-pages
           fi
 
-          # Remove all existing files in gh-pages branch
+          # Remove all existing files in gh-pages branch except .git folder
+          git ls-files | xargs git rm --cached
           git rm -rf .
 
           # Copy build files from master branch
