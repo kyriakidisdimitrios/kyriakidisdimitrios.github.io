@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # Trigger deployment on push to master branch
+      - main  # Trigger deployment on push to main branch
 
 jobs:
   deploy:
@@ -24,31 +24,31 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy Build to gh-pages Branch
+      - name: Deploy to GitHub Pages
         run: |
           git config --local user.email "kyriakidis.demetrios@gmail.com"
           git config --local user.name "kyriakidisdimitrios"
 
-          # Ensure gh-pages branch exists or create a new orphan branch
+          # Initialize git if not already done
+          git init
+
+          # Create gh-pages branch if it doesn't exist
           if ! git show-ref --verify --quiet refs/heads/gh-pages; then
             git checkout --orphan gh-pages
           else
             git checkout gh-pages
           fi
 
-          # Remove all existing files from gh-pages branch except .gitignore (if needed)
+          # Delete all existing files except .gitignore (if needed)
           git rm -rf .
 
-          # Copy build output from main branch
-          git checkout main -- build
-          mv build/* .
-          rm -rf build
+          # Copy build files from main branch
+          mv ../build/* .
+          rm -rf ../build
 
-          # Commit changes
+          # Commit and push changes
           git add .
           git commit -m "Deploy to GitHub Pages"
-
-          # Force push to gh-pages branch
           git push origin gh-pages --force
 
         env:
