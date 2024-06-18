@@ -10,7 +10,6 @@ import Education from './components/Education';
 import AdditionalInfo from './components/AdditionalInfo/AdditionalInfo'; // Import AdditionalInfo component
 
 
-
 function App() {
     return (
         <div className="App">
