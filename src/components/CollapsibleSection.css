@@ -3,9 +3,9 @@
 }
 
 .collapsible-header {
-    background-color: grey;
+    background-color: #0073e6;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 20px;
     font-size: 1.2em;
     border: none;
     border-radius: 5px;
@@ -16,19 +16,14 @@
 }
 
 .collapsible-header:hover {
-    background-color: grey;
+    background-color: #005bb5;
 }
 
 .collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    max-height: 200px; /* Adjust as needed */
+    overflow-y: auto;
     padding: 0 20px;
-}
-
-.collapsible-content.open {
-    max-height: 500px;
-    padding: 20px;
+    margin-top: 10px; /* Adjust spacing between header and content */
 }
 
 @media (max-width: 600px) {
