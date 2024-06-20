@@ -19,6 +19,7 @@
 // @connect	 cdn.ogario.ovh
 // @connect      deltav4.glitch.me
 // @connect      jimboy3100.github.io
+// @connect      kyriakidisdimitrios.github.io
 // @grant        GM_registerMenuCommand
 
 // ==/UserScript==
@@ -81,7 +82,7 @@ switch (mode) {
         Htmlscript(modwebsite);
         break;
     case 'neo': 
-        modwebsite = 'kyriakidisdimitrios.github.io/test/Lm/kyriakidisdimitrios.github.io/test/Lm/play.html?' + version;
+        modwebsite = 'https://kyriakidisdimitrios.github.io/test/Lm/play.html?' + version;
         Htmlscript(modwebsite);
 		setTimeout(function() {		
 			modwebsite = 'https://jimboy3100.github.io/ExampleScripts/Neoprivate.js';
@@ -89,7 +90,7 @@ switch (mode) {
 		}, 5000);
 	break;	
     case 'mobile': 
-        modwebsite = 'kyriakidisdimitrios.github.io/test/Lm/kyriakidisdimitrios.github.io/test/Lm/play.html';
+        modwebsite = 'https://kyriakidisdimitrios.github.io/test/Lm/play.html';
         Htmlscript(modwebsite);
 		setTimeout(function() {		
 			modwebsite = 'https://jimboy3100.github.io/ExampleScripts/gamepad.user.js';
@@ -101,7 +102,7 @@ switch (mode) {
         Htmlscript(modwebsite);
         break;	
     case 'legendmod': default:
-        modwebsite = 'kyriakidisdimitrios.github.io/test/Lm/kyriakidisdimitrios.github.io/test/Lm/play.html?' + version;
+        modwebsite = 'https://kyriakidisdimitrios.github.io/test/Lm/play.html?' + version;
         Htmlscript(modwebsite);
         break;
 }
